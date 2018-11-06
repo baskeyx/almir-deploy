@@ -1,11 +1,6 @@
 const puppeteer = require('puppeteer');
 const CREDS = require('./creds'); // for users credentials
 
-const fs = require("fs");
-let content = fs.readFileSync("simple.json");
-
-content = JSON.parse(content);
-
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -18,5 +13,8 @@ content = JSON.parse(content);
   await page.click('#password');
   await page.keyboard.type(CREDS.password);
   await page.click('.FF-button');
+
+  // when done - confirmation messsage and close browser
+  // await browser.close();
 
 })();
